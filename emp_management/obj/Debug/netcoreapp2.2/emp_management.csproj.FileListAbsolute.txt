@@ -43,3 +43,4 @@ C:\projects\NETCORE\emp_management-master\emp_management\obj\Debug\netcoreapp2.2
 C:\projects\NETCORE\emp_management-master\emp_management\obj\Debug\netcoreapp2.2\emp_management.dll
 C:\projects\NETCORE\emp_management-master\emp_management\obj\Debug\netcoreapp2.2\emp_management.pdb
 C:\projects\NETCORE\emp_management-master\emp_management\obj\Debug\netcoreapp2.2\emp_management.csproj.CopyComplete
+C:\projects\NETCORE\emp_management-master\emp_management\obj\Debug\netcoreapp2.2\Razor\Views\Home\Index.g.cshtml.cs
