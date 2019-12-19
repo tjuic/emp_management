@@ -24,15 +24,15 @@ namespace emp_management.Controllers
             employees = _employeeRepository.GetAllEmployee();
             return View(employees);
         }
-        public ViewResult Details()
+        public ViewResult Details(int id)
         {
             Employee em = new Employee();
 
-            em = _employeeRepository.GetEmployee(1);
+            em = _employeeRepository.GetEmployee(id);
             HomeDetailsViewModel homeDetailsViewModel = new HomeDetailsViewModel()
             {
 
-                Employee = _employeeRepository.GetEmployee(1),
+                Employee = em,
 
                 PageTitle = "Emp Details"
             };

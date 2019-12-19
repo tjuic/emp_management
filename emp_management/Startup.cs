@@ -80,8 +80,11 @@ namespace emp_management
             //app.UseFileServer();
 
             app.UseStaticFiles();
-            app.UseMvcWithDefaultRoute();
-            
+            //app.UseMvcWithDefaultRoute();
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute("default", "{controller=Home}/{action=Index}/{id=1}");
+            });
 
             //app.Run(async (context) =>
             //{
@@ -98,7 +101,7 @@ namespace emp_management
 
             //});
 
-          
+
 
         }
     }
