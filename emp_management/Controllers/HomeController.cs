@@ -28,12 +28,12 @@ namespace emp_management.Controllers
             return View(employees);
         }
 
-       // [Route("Home/Details/{id?}")]
+        // [Route("Home/Details/{id?}")]
         public ViewResult Details(int? id)
         {
             Employee em = new Employee();
 
-            em = _employeeRepository.GetEmployee(id??1);
+            em = _employeeRepository.GetEmployee(id ?? 1);
             HomeDetailsViewModel homeDetailsViewModel = new HomeDetailsViewModel()
             {
 
@@ -41,13 +41,13 @@ namespace emp_management.Controllers
 
                 PageTitle = "Emp Details"
             };
-        
+
 
             //return "Hello from MVC";
             //return Json(new { id = 1, name = "atip" });
 
-            
-            
+
+
             //ViewBag.Employee = em;
             //ViewData["PageTitle"] = "Emp Details";
 
@@ -60,10 +60,17 @@ namespace emp_management.Controllers
             return View();
         }
         [HttpPost]
-        public RedirectToActionResult Create(Employee employee)
+        public IActionResult Create(Employee employee)
         {
-            Employee newEmployee = _employeeRepository.Add(employee);
-            return RedirectToAction("details", new { id = newEmployee.Id });
-        } 
+            if (ModelState.IsValid)
+            {
+                Employee newEmployee = _employeeRepository.Add(employee);
+                return RedirectToAction("details", new { id = newEmployee.Id });
+            }
+            else
+            {
+                return View();
+            }
         }
     }
+}
