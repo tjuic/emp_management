@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using emp_management.Models;
 
 namespace emp_management.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191222211021_SeedEmployeeTable")]
+    partial class SeedEmployeeTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -43,13 +45,6 @@ namespace emp_management.Migrations
                             Department = 2,
                             Email = "tt@gmail.com",
                             Name = "TT"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Department = 1,
-                            Email = "EE@gmail.com",
-                            Name = "EE"
                         });
                 });
 #pragma warning restore 612, 618
