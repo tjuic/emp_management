@@ -13,6 +13,7 @@ namespace emp_management.Models
         {
             this.context = context;
         }
+
         public Employee Add(Employee employee)
         {
             context.Employees.Add(employee);
@@ -34,18 +35,38 @@ namespace emp_management.Models
 
         public IEnumerable<Employee> GetAllEmployee()
         {
-            throw new NotImplementedException();
+            return context.Employees;
         }
 
         public Employee GetEmployee(int Id)
         {
             //throw new NotImplementedException();
-            return (context.Employees);
+            Employee empl = context.Employees.FirstOrDefault(t => t.Id == Id);
+            return (empl);
         }
 
         public Employee Update(Employee employeeChanges)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+            Employee empl = context.Employees.FirstOrDefault(t => t.Id == employeeChanges.Id);
+            if (empl != null)
+            {
+                empl = employeeChanges;
+                context.SaveChanges();
+                return empl;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public Employee UpdateNew(Employee employeeChanges)
+        {
+            var employee = context.Employees.Attach(employeeChanges);
+            employee.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            context.SaveChanges();
+            return employeeChanges;
         }
     }
 }

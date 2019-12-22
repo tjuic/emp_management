@@ -17,15 +17,15 @@ namespace emp_management
     {
         private IConfiguration _config;
 
-        public Startup(IConfiguration aa)
+        public Startup(IConfiguration config)
         {
-            _config = aa;
+            _config = config;
         }
 
-        public int MyTestFunc()
-        {
-            return 0;
-        }
+        //public int MyTestFunc()
+        //{
+        //    return 0;
+        //}
 
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -35,7 +35,7 @@ namespace emp_management
             services.AddDbContextPool<AppDbContext>
                 (option => option.UseSqlServer(_config.GetConnectionString("EmployeeDBConnection")));
             services.AddMvc().AddXmlSerializerFormatters();
-            services.AddSingleton<IEmployeeRepository, MockEmployeeRepository>();
+            services.AddScoped<IEmployeeRepository, SQLEmmployeeRepository>();
         }
 
 
