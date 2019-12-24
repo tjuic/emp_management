@@ -28,10 +28,10 @@
     </div>
 
     <div class="form-group row">
-        <label asp-for="Photo" class="col-sm-2 col-form-label"></label>
+        <label asp-for="Photos" class="col-sm-2 col-form-label"></label>
         <div class="col-sm-10">
             <div class="custom-file">
-                <input asp-for="Photo" class="form-control custom-file-input" />
+                <input multiple asp-for="Photos" class="form-control custom-file-input" />
                 <label class="custom-file-label">Choose File...</label>
             </div>
         </div>
@@ -44,31 +44,44 @@
         </div>
     </div>
 
-    @section Scripts{ 
+    @section Scripts{
         @*<script>
-            $(document).ready(fucntion() {
-                $('.custom-file-lable').on("change", function () {
-                    var filename = $(this).val().split("\\").pop();
-                    $(this).next('.custom-file-lable').html(filename);
-                })
-            });
-        </script>*@
+                $(document).ready(fucntion() {
+                    $('.custom-file-lable').on("change", function () {
+                        var filename = $(this).val().split("\\").pop();
+                        $(this).next('.custom-file-lable').html(filename);
+                    })
+                });
+            </script>*@
 
         <script>
             $(document).ready(function () {
                 $('.custom-file-input').on("change", function () {
-                    var filename = $(this).val().split("\\").pop();
-                    $(this).next('.custom-file-label').html(filename);
-
-                    console.log(filename);
+                    //console.log($(this));
+                    var fileLabel = $(this).next('.custom-file-label');
+                    console.log("Step1");
+                    var files = $(this)[0].files;
+                    console.log("Step2");
+                    if (files.length > 1) {
+                        console.log("Step3");
+                        fileLabel.html(files.length + ' files selected');
+                        console.log("Step4");
+                    }
+                    else if (files.length == 1) {
+                        console.log("Step5");
+                        fileLabel.html(files[0].name);
+                        console.log("Step6");
+                    }
+                    console.log("Step7");
+                    //console.log(filename);
                 })
             });
         </script>
     }
 
     @*<div class="form-group row">
-        <div class="col-sm-10">
-            Total Employee Count = @_empRepository.GetAllEmployee().Count().ToString()
-        </div>
-    </div>*@
+            <div class="col-sm-10">
+                Total Employee Count = @_empRepository.GetAllEmployee().Count().ToString()
+            </div>
+        </div>*@
 </form>
