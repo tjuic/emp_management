@@ -1,0 +1,38 @@
+﻿@model CustomerDetailsViewModel
+@{
+    ViewBag.Title = "CustomerDetails";
+    var photoPath = "~/Images/" + (Model.Customer.PhotoPath ?? "shock.png");
+}
+<h3>@Model.PageTitle</h3>
+@{
+    //var emp = ViewData["Customer"] as emp_management.Models.Customer;
+
+}
+
+<div class="row justify-content-center m-3">
+    <div class="col-sm-8">
+
+        <div class="card">
+            <div class="card-header">
+                <h1>@Model.Customer.Name</h1>
+            </div>
+
+            <div class="card-body text-center">
+                <img class="card-img-top imageThumbnai" src=@photoPath asp-append-version="true" />
+
+                <h4>Employee ID : @Model.Customer.Id</h4>
+                <h4>Email : @Model.Customer.Email</h4>
+
+            </div>
+            <div class="card-footer text-center">
+                <a asp-controller="home" asp-action="Index" class="btn btn-primary">Back</a>
+                <a href="#" class="btn btn-primary">Edit</a>
+                <a href="#" class="btn btn-danger">Delete</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script src="~/js/CustomScript.js"></script>
+}

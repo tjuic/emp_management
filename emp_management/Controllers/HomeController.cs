@@ -44,7 +44,7 @@ namespace emp_management.Controllers
 
                 Employee = em,
 
-                PageTitle = "Emp Details"
+                PageTitle = "Employee Details"
             };
 
 
@@ -97,6 +97,7 @@ namespace emp_management.Controllers
             {
                 return View();
             }
+
         }
     }
 }
