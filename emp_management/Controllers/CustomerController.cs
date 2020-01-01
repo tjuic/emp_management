@@ -63,7 +63,7 @@ namespace emp_management.Controllers
             return View();
         }
 
-        public ViewResult Edit(int id)
+        public ViewResult EditC(int id)
         {
 
             Customer customer = _CustomerRep.GetCustomer(id);
@@ -79,7 +79,7 @@ namespace emp_management.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(CustomerEditViewModel customer)
+        public IActionResult EditC(CustomerEditViewModel customer)
         {
             if (ModelState.IsValid)
             {
@@ -95,11 +95,11 @@ namespace emp_management.Controllers
                         customer.ExistingPhotoPath);
                         System.IO.File.Delete(filePath);
                     }
-                    cus.PhotoPath = ProcessUploadFile(customer);         
+                    cus.PhotoPath = ProcessUploadFile(customer);
                 }
 
                 _CustomerRep.Update(cus);
-                return RedirectToAction("index");
+                return RedirectToAction("indexc");
             }
             else
             {
@@ -108,16 +108,22 @@ namespace emp_management.Controllers
 
         }
 
-        private string ProcessUploadFile(CustomerEditViewModel customer)
+        private string ProcessUploadFile(CustomerCreateViewModel customer)
         {
             string uniqueFileName = null;
+            if (customer.Photos != null && customer.Photos.Count > 0)
+
             {
                 foreach (IFormFile photo in customer.Photos)
                 {
                     string uploaderFolder = Path.Combine(_HostingEnvironment.WebRootPath, "images");
                     uniqueFileName = Guid.NewGuid().ToString() + "_" + photo.FileName;
                     string filePath = Path.Combine(uploaderFolder, uniqueFileName);
-                    photo.CopyTo(new FileStream(filePath, FileMode.Create));
+                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                    {
+                        photo.CopyTo(fileStream);
+                    }
+
                 }
 
             }
@@ -130,18 +136,8 @@ namespace emp_management.Controllers
         {
             if (ModelState.IsValid)
             {
-                string uniqueFileName = null;
-                if (customer.Photos != null && customer.Photos.Count > 0)
-                {
-                    foreach (IFormFile photo in customer.Photos)
-                    {
-                        string uploaderFolder = Path.Combine(_HostingEnvironment.WebRootPath, "images");
-                        uniqueFileName = Guid.NewGuid().ToString() + "_" + photo.FileName;
-                        string filePath = Path.Combine(uploaderFolder, uniqueFileName);
-                        photo.CopyTo(new FileStream(filePath, FileMode.Create));
-                    }
+                string uniqueFileName = ProcessUploadFile(customer);
 
-                }
 
                 Customer newCustomer = new Customer
                 {
