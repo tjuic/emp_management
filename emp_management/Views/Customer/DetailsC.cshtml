@@ -20,12 +20,14 @@
             <div class="card-body text-center">
                 <img class="card-img-top imageThumbnai" src=@photoPath asp-append-version="true" />
 
-                <h4>Employee ID : @Model.Customer.Id</h4>
+                <h4>Customer ID : @Model.Customer.Id</h4>
                 <h4>Email : @Model.Customer.Email</h4>
+                <h4>Member : @Model.Customer.Member</h4>
+
 
             </div>
             <div class="card-footer text-center">
-                <a asp-controller="home" asp-action="Index" class="btn btn-primary">Back</a>
+                <a asp-controller="customer" asp-action="IndexC" class="btn btn-primary">Back</a>
                 <a href="#" class="btn btn-primary">Edit</a>
                 <a href="#" class="btn btn-danger">Delete</a>
             </div>

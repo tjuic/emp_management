@@ -71,7 +71,7 @@ namespace emp_management.Models
 
         public IEnumerable<Customer> GetAllCustomer()
         {
-            throw new NotImplementedException();
+            return context.Customers;
         }
     }
 }

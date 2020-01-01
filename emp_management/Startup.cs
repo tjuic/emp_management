@@ -36,19 +36,15 @@ namespace emp_management
                 (option => option.UseSqlServer(_config.GetConnectionString("EmployeeDBConnection")));
             services.AddMvc().AddXmlSerializerFormatters();
             services.AddScoped<IEmployeeRepository, SQLEmmployeeRepository>();
-        }
-
-        public void ConfigureServicesC(IServiceCollection services)
-        {
-            services.AddDbContextPool<AppDbContext>
-            (option => option.UseSqlServer(_config.GetConnectionString("CustomerDBConnection")));
-            services.AddMvc().AddXmlSerializerFormatters();
             services.AddScoped<ICustomerRep, SQLCustomerRep>();
+
         }
 
 
-    // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-    public void Configure(IApplicationBuilder app, IHostingEnvironment env/*, ILogger<Startup> logger*/)
+
+
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env/*, ILogger<Startup> logger*/)
     {
         if (env.IsDevelopment())
         {
@@ -96,25 +92,27 @@ namespace emp_management
         app.UseMvc(routes =>
         {
             routes.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
+
         });
 
-        //app.Run(async (context) =>
-        //{
-        //    // throw new Exception("Some error occured");
-        //    //await context.Response.WriteAsync("MW3: Outgoing request");
-        //    //await context.Response
-        //    //.WriteAsync(System.Diagnostics.Process.GetCurrentProcess().ProcessName + "\n") ;
-        //    //await context.Response
-        //    //.WriteAsync(_config["MyKey"].ToString() + "\n");
-        //    //await context.Response
-        //    //.WriteAsync(_config["YourKey"].ToString());
-        //    //logger.LogInformation("MW3: Outgoing request");
-        //    await context.Response.WriteAsync("Hosting Evn: " + env.EnvironmentName.ToUpper());
+            //app.Run(async (context) =>
+            //{
+            //    // throw new Exception("Some error occured");
+            //    //await context.Response.WriteAsync("MW3: Outgoing request");
+            //    //await context.Response
+            //    //.WriteAsync(System.Diagnostics.Process.GetCurrentProcess().ProcessName + "\n") ;
+            //    //await context.Response
+            //    //.WriteAsync(_config["MyKey"].ToString() + "\n");
+            //    //await context.Response
+            //    //.WriteAsync(_config["YourKey"].ToString());
+            //    //logger.LogInformation("MW3: Outgoing request");
+            //    await context.Response.WriteAsync("Hosting Evn: " + env.EnvironmentName.ToUpper());
 
-        //});
+            //});
+            
 
 
 
-    }
+        }
 }
 }

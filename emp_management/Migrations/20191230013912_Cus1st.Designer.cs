@@ -9,8 +9,8 @@ using emp_management.Models;
 namespace emp_management.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20191228234919_CusFirst")]
-    partial class CusFirst
+    [Migration("20191230013912_Cus1st")]
+    partial class Cus1st
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,6 +28,8 @@ namespace emp_management.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired();
+
+                    b.Property<int>("Member");
 
                     b.Property<string>("Name")
                         .IsRequired();

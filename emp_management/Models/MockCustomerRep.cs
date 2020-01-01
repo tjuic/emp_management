@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace emp_management.Models
 {
-    public class MockCustomerRep
+    public class MockCustomerRep : ICustomerRep
     {
         private List<Customer> _customerList;
 
@@ -13,9 +13,9 @@ namespace emp_management.Models
         {
             _customerList = new List<Customer>
             {
-            new Customer() { Id =1, Name="FFF", Email="f@email.com"},
-            new Customer() { Id = 2, Name = "SSS", Email = "s@email.com" },
-            new Customer() { Id = 3, Name = "TTT", Email = "t@email.com" }
+            new Customer() { Id = 1, Name = "FFF", Member = Mem.Silver, Email ="f@email.com"},
+            new Customer() { Id = 2, Name = "SSS", Member = Mem.Bronze, Email = "s@email.com" },
+            new Customer() { Id = 3, Name = "TTT", Member = Mem.Gold, Email = "t@email.com" }
             };
         }
 

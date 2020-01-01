@@ -14,6 +14,8 @@ namespace emp_management.Models
         [EmailAddress]
         [Required]
         public string Email { get; set; }
+        [Required]
+        public Mem Member { get; set; }
         public string PhotoPath { get; set; }
     }
 }

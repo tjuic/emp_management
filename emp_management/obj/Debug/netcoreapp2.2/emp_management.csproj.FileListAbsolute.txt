@@ -48,7 +48,9 @@ C:\projects\NETCORE\emp_management-master\emp_management\obj\Debug\netcoreapp2.2
 C:\projects\NETCORE\emp_management-master\emp_management\obj\Debug\netcoreapp2.2\Razor\Views\Home\_ViewStart.g.cshtml.cs
 C:\projects\NETCORE\emp_management-master\emp_management\obj\Debug\netcoreapp2.2\Razor\Views\_ViewImports.g.cshtml.cs
 C:\projects\NETCORE\emp_management-master\emp_management\obj\Debug\netcoreapp2.2\Razor\Views\Home\Create.g.cshtml.cs
-C:\projects\NETCORE\emp_management-master\emp_management\obj\Debug\netcoreapp2.2\Razor\Views\Home\IndexCus.g.cshtml.cs
-C:\projects\NETCORE\emp_management-master\emp_management\obj\Debug\netcoreapp2.2\Razor\Views\Home\CreateC.g.cshtml.cs
-C:\projects\NETCORE\emp_management-master\emp_management\obj\Debug\netcoreapp2.2\Razor\Views\Home\DetailsCus.g.cshtml.cs
 C:\projects\NETCORE\emp_management-master\emp_management\obj\Debug\netcoreapp2.2\emp_management.csprojAssemblyReference.cache
+C:\projects\NETCORE\emp_management-master\emp_management\obj\Debug\netcoreapp2.2\Razor\Views\Customer\CreateC.g.cshtml.cs
+C:\projects\NETCORE\emp_management-master\emp_management\obj\Debug\netcoreapp2.2\Razor\Views\Customer\IndexC.g.cshtml.cs
+C:\projects\NETCORE\emp_management-master\emp_management\obj\Debug\netcoreapp2.2\Razor\Views\Customer\DetailsC.g.cshtml.cs
+C:\projects\NETCORE\emp_management-master\emp_management\obj\Debug\netcoreapp2.2\Razor\Views\Home\Edit.g.cshtml.cs
+C:\projects\NETCORE\emp_management-master\emp_management\obj\Debug\netcoreapp2.2\Razor\Views\Customer\EditC.g.cshtml.cs

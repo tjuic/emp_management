@@ -24,7 +24,7 @@ namespace emp_management.Controllers
             _CustomerRep = _customerRep;
         }
 
-        public ViewResult IndexCus()
+        public ViewResult IndexC()
         {
             IEnumerable<Customer> customers;
             customers = _CustomerRep.GetAllCustomer();
@@ -32,12 +32,12 @@ namespace emp_management.Controllers
         }
 
         // [Route("Home/Details/{id?}")]
-        public ViewResult Details(int? id)
+        public ViewResult DetailsC(int? id)
         {
             Customer cu = new Customer();
 
             cu = _CustomerRep.GetCustomer(id ?? 1);
-            CustomerDetailsViewModel homeDetailsViewModelc = new CustomerDetailsViewModel()
+            CustomerDetailsViewModel CustomerDetailsViewModel = new CustomerDetailsViewModel()
             {
 
                 Customer = cu,
@@ -55,15 +55,78 @@ namespace emp_management.Controllers
             //ViewData["PageTitle"] = "Emp Details";
 
             //return new ObjectResult(em);
-            return View(homeDetailsViewModelc);
+            return View(CustomerDetailsViewModel);
 
         }
-        //public ViewResult Create()
-        //{
-        //    return View();
-        //}
+        public ViewResult CreateC()
+        {
+            return View();
+        }
+
+        public ViewResult Edit(int id)
+        {
+
+            Customer customer = _CustomerRep.GetCustomer(id);
+            CustomerEditViewModel customerEditViewModel = new CustomerEditViewModel
+            {
+                Id = customer.Id,
+                Name = customer.Name,
+                Email = customer.Email,
+                Member = customer.Member,
+                ExistingPhotoPath = customer.PhotoPath
+            };
+            return View(customerEditViewModel);
+        }
+
         [HttpPost]
-        public IActionResult Create(CustomerCreateViewModel customer)
+        public IActionResult Edit(CustomerEditViewModel customer)
+        {
+            if (ModelState.IsValid)
+            {
+                Customer cus = _CustomerRep.GetCustomer(customer.Id);
+                cus.Name = customer.Name;
+                cus.Email = customer.Email;
+                cus.Member = customer.Member;
+                if (customer.Photos != null)
+                {
+                    if (customer.ExistingPhotoPath != null)
+                    {
+                        string filePath = Path.Combine(_HostingEnvironment.WebRootPath, "images",
+                        customer.ExistingPhotoPath);
+                        System.IO.File.Delete(filePath);
+                    }
+                    cus.PhotoPath = ProcessUploadFile(customer);         
+                }
+
+                _CustomerRep.Update(cus);
+                return RedirectToAction("index");
+            }
+            else
+            {
+                return View();
+            }
+
+        }
+
+        private string ProcessUploadFile(CustomerEditViewModel customer)
+        {
+            string uniqueFileName = null;
+            {
+                foreach (IFormFile photo in customer.Photos)
+                {
+                    string uploaderFolder = Path.Combine(_HostingEnvironment.WebRootPath, "images");
+                    uniqueFileName = Guid.NewGuid().ToString() + "_" + photo.FileName;
+                    string filePath = Path.Combine(uploaderFolder, uniqueFileName);
+                    photo.CopyTo(new FileStream(filePath, FileMode.Create));
+                }
+
+            }
+
+            return uniqueFileName;
+        }
+
+        [HttpPost]
+        public IActionResult CreateC(CustomerCreateViewModel customer)
         {
             if (ModelState.IsValid)
             {
@@ -84,11 +147,12 @@ namespace emp_management.Controllers
                 {
                     Name = customer.Name,
                     Email = customer.Email,
-                    PhotoPath = uniqueFileName
+                    PhotoPath = uniqueFileName,
+                    Member = customer.Member
                 };
 
                 _CustomerRep.Add(newCustomer);
-                return RedirectToAction("details", new { id = newCustomer.Id });
+                return RedirectToAction("detailsc", new { id = newCustomer.Id });
             }
             else
             {

@@ -27,6 +27,8 @@ namespace emp_management.Migrations
                     b.Property<string>("Email")
                         .IsRequired();
 
+                    b.Property<int>("Member");
+
                     b.Property<string>("Name")
                         .IsRequired();
 

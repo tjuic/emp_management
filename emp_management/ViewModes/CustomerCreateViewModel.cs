@@ -16,6 +16,8 @@ namespace emp_management.ViewModes
         [Required]
         [Display(Name = "Office Email")]
         public string Email { get; set; }
+        [Required]
+        public Mem Member { get; set; }
         public List<IFormFile> Photos { get; set; }
     }
 }

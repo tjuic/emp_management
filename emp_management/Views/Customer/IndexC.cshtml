@@ -15,11 +15,11 @@
             </div>
             <img class="card-img-top imageThumbnai" src=@photoPath asp-append-version="true" />
             <div class="card-footer text-center">
-                <a asp-controller="home" asp-action="details" asp-route-id="@customer.Id"
+                <a asp-controller="customer" asp-action="detailsc" asp-route-id="@customer.Id"
                    class="btn btn-primary m-1">View</a>
-                <a asp-controller="home" asp-action="edit" asp-route-id="@customer.Id"
+                <a asp-controller="customer" asp-action="edit" asp-route-id="@customer.Id"
                    class="btn btn-primary m-1">Edit</a>
-                <a asp-controller="home" asp-action="delete" asp-route-id="@customer.Id"
+                <a asp-controller="customer" asp-action="delete" asp-route-id="@customer.Id"
                    class="btn btn-danger m-1">Delete</a>
 
                 @*@Html.ActionLink("View", "details", "home", new { id = employee.Id})*@
@@ -29,4 +29,3 @@
         </div>
     }
 </div>
-
