@@ -3,6 +3,7 @@ using emp_management.ViewModes;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,11 +16,15 @@ namespace emp_management.Controllers
     {
         private IEmployeeRepository _employeeRepository;
         private readonly IHostingEnvironment _HostingEnvironment;
+        private readonly ILogger logger;
 
-        public HomeController(IEmployeeRepository employeeRepository, IHostingEnvironment _hostingEnvironment)
-        {
+        public HomeController(IEmployeeRepository employeeRepository, 
+                              IHostingEnvironment _hostingEnvironment,
+                              ILogger<HomeController> logger)
+        {           
             _employeeRepository = employeeRepository;
             _HostingEnvironment = _hostingEnvironment;
+            this.logger = logger;
         }
 
         //public JsonResult Index()
@@ -36,13 +41,28 @@ namespace emp_management.Controllers
         // [Route("Home/Details/{id?}")]
         public ViewResult Details(int? id)
         {
-            Employee em = new Employee();
+            // throw new Exception("Error in Details View");
 
-            em = _employeeRepository.GetEmployee(id ?? 1);
+            logger.LogTrace("Trace Log");
+            logger.LogDebug("Debug Log");
+            logger.LogInformation("Information Log");
+            logger.LogWarning("Warning Log");
+            logger.LogError("Error Log");
+            logger.LogCritical("Critical Log");
+
+            Employee employee = _employeeRepository.GetEmployee(id.Value);
+
+            if (employee == null)
+            {
+                Response.StatusCode = 404;
+                return View("EmployeeNotFound", id.Value);
+            }
+
+
             HomeDetailsViewModel homeDetailsViewModel = new HomeDetailsViewModel()
             {
 
-                Employee = em,
+                Employee = employee,
 
                 PageTitle = "Employee Details"
             };

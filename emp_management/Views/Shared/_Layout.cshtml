@@ -17,7 +17,8 @@
               asp-fallback-test-class="sr-only"
               asp-fallback-test-property="position"
               asp-suppress-fallback-integrity="true">
-
+            <script src="~/lib/jquery/jquery.js"></script>
+        <script src="~/lib/bootstrap/js/bootstrap.js"></script>
     </environment>
 
     <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
@@ -37,36 +38,39 @@
                 </span>
             </button>
             <div class="collapse navbar-collapse" id="collapsibleNavbar">
-                <div class="dropdown">
-                    <button class="btn-dark dropdown-toggle" type="button" data-toggle="dropdown">
-                        Employee
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li class="nav-item">
-                            <a asp-action="index" asp-controller="home" class="nav-link">Employee List</a>
-                        </li>
-                        <li class="nav-item">
-                            <a asp-action="create" asp-controller="home" class="nav-link">CreateEmployee</a>
-                        </li>
-                    </ul>
-                </div>
+                <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                    <div class="dropdown">
+                        <button class="btn-dark dropdown-toggle" type="button" data-toggle="dropdown">
+                            Employee
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li class="nav-item">
+                                <a asp-action="index" asp-controller="home" class="nav-link">Employee List</a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-action="create" asp-controller="home" class="nav-link">CreateEmployee</a>
+                            </li>
+                        </ul>
+                    </div>
 
 
-                <div class="dropdown">
-                    <button class="btn-dark dropdown-toggle" type="button" data-toggle="dropdown">
-                        Customer
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li class="nav-item">
-                            <a asp-action="indexc" asp-controller="customer" class="nav-link">Customer List</a>
-                        </li>
-                        <li class="nav-item">
-                            <a asp-action="createc" asp-controller="customer" class="nav-link">CreateCustomer</a>
-                        </li>
-                    </ul>
+                    <div class="dropdown">
+                        <button class="btn-dark dropdown-toggle" type="button" data-toggle="dropdown">
+                            Customer
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li class="nav-item">
+                                <a asp-action="index" asp-controller="customer" class="nav-link">Customer List</a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-action="create" asp-controller="customer" class="nav-link">CreateCustomer</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
+                
                 </div>
         </nav>
         <div>

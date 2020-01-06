@@ -45,74 +45,31 @@ namespace emp_management
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env/*, ILogger<Startup> logger*/)
-    {
-        if (env.IsDevelopment())
         {
-            app.UseDeveloperExceptionPage();
-        }
-
-        //app.Use(async (context, next) =>
-        //{
-        //    logger.LogInformation("MW1: Incoming request");
-        //    //await context.Response.WriteAsync("Hello World!");
-        //    await context.Response
-        //    .WriteAsync(System.Diagnostics.Process.GetCurrentProcess().ProcessName + "\n");
-        //    await context.Response
-        //    .WriteAsync(_config["MyKey"].ToString() + "\n");
-        //    await context.Response
-        //    .WriteAsync(_config["YourKey"].ToString() + "\n");
-
-        //    await next();
-        //    logger.LogInformation("MW1: Outgoing request");
-
-        //});
-
-        //app.Use(async (context, next) =>
-        //{
-        //    logger.LogInformation("MW2: Incoming request");
-        //    //await context.Response.WriteAsync("Hello World!");
-
-        //    await next();
-        //    logger.LogInformation("MW2: Outgoing request");
-
-        //});
-
-        DefaultFilesOptions defaultFilesOptions = new DefaultFilesOptions();
-        //defaultFilesOptions.DefaultFileNames.Clear();
-        //defaultFilesOptions.DefaultFileNames.Add("foo.html");
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+            else
+            {
+                app.UseExceptionHandler("/Error");
+                app.UseStatusCodePagesWithReExecute("/Error/{0}");
+            }
 
 
-        //app.UseDefaultFiles(defaultFilesOptions);
 
-        //app.UseFileServer();
+            DefaultFilesOptions defaultFilesOptions = new DefaultFilesOptions();
 
-        app.UseStaticFiles();
-        //app.UseMvcWithDefaultRoute();
 
-        app.UseMvc(routes =>
-        {
-            routes.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
+             app.UseStaticFiles();
 
-        });
+             app.UseMvc(routes =>
+             {
+                 routes.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
 
-            //app.Run(async (context) =>
-            //{
-            //    // throw new Exception("Some error occured");
-            //    //await context.Response.WriteAsync("MW3: Outgoing request");
-            //    //await context.Response
-            //    //.WriteAsync(System.Diagnostics.Process.GetCurrentProcess().ProcessName + "\n") ;
-            //    //await context.Response
-            //    //.WriteAsync(_config["MyKey"].ToString() + "\n");
-            //    //await context.Response
-            //    //.WriteAsync(_config["YourKey"].ToString());
-            //    //logger.LogInformation("MW3: Outgoing request");
-            //    await context.Response.WriteAsync("Hosting Evn: " + env.EnvironmentName.ToUpper());
-
-            //});
-            
-
+              });
 
 
         }
-}
+    }
 }

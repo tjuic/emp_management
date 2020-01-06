@@ -24,7 +24,7 @@ namespace emp_management.Controllers
             _CustomerRep = _customerRep;
         }
 
-        public ViewResult IndexC()
+        public ViewResult Index()
         {
             IEnumerable<Customer> customers;
             customers = _CustomerRep.GetAllCustomer();
@@ -32,7 +32,7 @@ namespace emp_management.Controllers
         }
 
         // [Route("Home/Details/{id?}")]
-        public ViewResult DetailsC(int? id)
+        public ViewResult Details(int? id)
         {
             Customer cu = new Customer();
 
@@ -58,12 +58,12 @@ namespace emp_management.Controllers
             return View(CustomerDetailsViewModel);
 
         }
-        public ViewResult CreateC()
+        public ViewResult Create()
         {
             return View();
         }
 
-        public ViewResult EditC(int id)
+        public ViewResult Edit(int id)
         {
 
             Customer customer = _CustomerRep.GetCustomer(id);
@@ -79,7 +79,7 @@ namespace emp_management.Controllers
         }
 
         [HttpPost]
-        public IActionResult EditC(CustomerEditViewModel customer)
+        public IActionResult Edit(CustomerEditViewModel customer)
         {
             if (ModelState.IsValid)
             {
@@ -99,7 +99,7 @@ namespace emp_management.Controllers
                 }
 
                 _CustomerRep.Update(cus);
-                return RedirectToAction("indexc");
+                return RedirectToAction("index");
             }
             else
             {
@@ -132,7 +132,7 @@ namespace emp_management.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateC(CustomerCreateViewModel customer)
+        public IActionResult Create(CustomerCreateViewModel customer)
         {
             if (ModelState.IsValid)
             {
@@ -148,7 +148,7 @@ namespace emp_management.Controllers
                 };
 
                 _CustomerRep.Add(newCustomer);
-                return RedirectToAction("detailsc", new { id = newCustomer.Id });
+                return RedirectToAction("details", new { id = newCustomer.Id });
             }
             else
             {
