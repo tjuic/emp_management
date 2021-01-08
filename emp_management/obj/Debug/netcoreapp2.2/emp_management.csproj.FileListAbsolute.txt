@@ -58,3 +58,4 @@ C:\projects\NETCORE\emp_management-master\emp_management\obj\Debug\netcoreapp2.2
 C:\projects\NETCORE\emp_management-master\emp_management\obj\Debug\netcoreapp2.2\Razor\Views\Shared\NotFound.g.cshtml.cs
 C:\projects\NETCORE\emp_management-master\emp_management\obj\Debug\netcoreapp2.2\Razor\Views\Shared\Error.g.cshtml.cs
 C:\projects\NETCORE\emp_management-master\emp_management\bin\Debug\netcoreapp2.2\nlog.config
+C:\projects\NETCORE\emp_management-master\emp_management\obj\Debug\netcoreapp2.2\Razor\Views\Account\Register.g.cshtml.cs

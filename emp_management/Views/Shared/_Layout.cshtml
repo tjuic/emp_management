@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@inject SignInManager<IdentityUser> signInManager;
+
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -19,6 +21,7 @@
               asp-suppress-fallback-integrity="true">
             <script src="~/lib/jquery/jquery.js"></script>
         <script src="~/lib/bootstrap/js/bootstrap.js"></script>
+
     </environment>
 
     <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
@@ -66,7 +69,33 @@
                             </li>
                             <li class="nav-item">
                                 <a asp-action="create" asp-controller="customer" class="nav-link">CreateCustomer</a>
-                            </li>
+                            </li>        
+                        </ul>
+
+                      
+                    </div>
+                    <div class="nav-item ml-auto">
+                        <ul class="navbar-nav ml-auto">
+                            @if (signInManager.IsSignedIn(User))
+                            {
+                                <li class="nav-item">
+                                    <form method="post" asp-action="logout" asp-controller="account">
+                                        <button type="submit" class="nav-link btn btn-link py-0" style="width:auto">
+                                            Logout @User.Identity.Name
+                                        </button>
+                                    </form>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="nav-item">
+                                    <a asp-action="register" asp-controller="account" class="nav-link">Register</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a asp-action="login" asp-controller="account" class="nav-link">Login</a>
+                                </li>
+                            }
+
                         </ul>
                     </div>
                 </div>
